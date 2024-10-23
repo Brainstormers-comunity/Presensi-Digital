@@ -16,8 +16,8 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td>salsa</td>
-                        <td>20 mei 1999</td>
+                        <td>Gina</td>
+                        <td>20 mei 2024</td>
                         <td>SAKIT</td>
                     </tr>
                 </thead>
@@ -32,3 +32,9 @@
     </div>
 
 </template>
+<script setup>
+
+definePageMeta({
+  middleware: 'auth',
+})
+</script>

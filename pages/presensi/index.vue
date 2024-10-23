@@ -51,6 +51,10 @@
 
 
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
+
 const client = useSupabaseClient()
 const kelas = ref([])
 const siswa = ref([])

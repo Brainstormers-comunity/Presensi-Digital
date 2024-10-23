@@ -30,17 +30,17 @@
                     <tr>
                         <td>25 SEPTEMBER 2024</td>
                         <td>XI TOI</td>
-                        <td>33</td>
+                        <td>34</td>
                         <td>30</td>
                         <td>1</td>
                         <td>1</td>
                         <td>1</td>
-                        <td>0</td>
+                        <td>2</td>
                     </tr>
                 </thead>
              </table>
              <div class="col-1 ms-auto mb-3">
-                <NuxtLink to="">
+                <NuxtLink to="/">
                     <button type="button" class="btn" style="background-color: #D9D9D9;">Kembali</button>
                 </NuxtLink>
              </div>
