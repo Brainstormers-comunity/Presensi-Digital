@@ -4,7 +4,7 @@
             <h1 class="text-center my-5">RIWAYAT KEHADIRAN </h1> 
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center" style="width: 100rem; height:3rem;background-color: #D9D9D9; ">
         <input type="date" @change="getSchedule">
         {{ schedule }}
     </div>
@@ -18,9 +18,9 @@
                         <th class="text-center">Tanggal</th>
                         <th class="text-center">Keterangan</th>
                     </tr>
-                    <tr v-for="(visitor,i) in visitors" :key="i">
+                    <tr v-for="(visitor,i) in students" :key="i">
                             <td>{{ i+1 }}.</td>
-                            <td>{{ visitors.siswa }}</td>
+                            <td>{{ visitor?.id_siswa.nama }}</td>
                             <td>{{ visitor.tgl }}</td>
                             <td>{{ visitor.keterangan }}</td>
                         </tr>
@@ -40,15 +40,15 @@
 <script setup>
 const supabase = useSupabaseClient()
 const date = ref('')
-const visitors = ref([])
+const students = ref([])
 
 const getSchedule = async (event) => {
     date.value = event.target.value
     const { data, error } = await supabase
     .from('daftar_kehadiran')
-    .select();
+    .select(`*, id_siswa(nama)`);
     //.eq('tgl', date.value)
-    if(data) visitors.value=data
+    if(data) students.value = data
 //     if (error) throw error
 //     visitor.value = data
 }
