@@ -19,6 +19,16 @@
                    </div>
            </NuxtLink>
            </div>
+
+           <div class="row justify-content-center">
+           <div class="col-sm-3 my-3">
+               <NuxtLink to="laporan/">
+                  <div class="card rounded-3 bg6 shadow">
+                      <h2 class="card-title">Laporan absensi</h2> 
+                   </div>
+           </NuxtLink>
+           </div>
+           </div>
    
        </div>
     </div>   
@@ -44,12 +54,18 @@
    
    .bg4 {
        background-image: url("/assets/img/bg4.jpeg");
-       background-size: 29rem;
+       background-size: cover;
        background-repeat: no-repeat;
        background-position: 15%;
    }
    .bg5 {
        background-image: url("/assets/img/bg5.jpeg");
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-position: 2%;
+   }
+   .bg6 {
+       background-image: url("/assets/img/bg6.png");
        background-size: cover;
        background-repeat: no-repeat;
        background-position: 2%;

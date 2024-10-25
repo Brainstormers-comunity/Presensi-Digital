@@ -1,8 +1,12 @@
 <template>
     <div class="row">
         <div class="col">
-            <h1 class="text-center my-3">RIWAYAT KEHADIRAN </h1> 
+            <h1 class="text-center my-4">RIWAYAT KEHADIRAN </h1> 
         </div>
+    </div>
+    <div class="row  justify-content-center">
+        <input type="date" @change="getSchedule" style="width: 110rem; height:3rem;background-color: #D9D9D9;" class="rounded-3 my-3" >
+        {{ schedule }}
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
@@ -14,12 +18,12 @@
                         <th class="text-center">Tanggal</th>
                         <th class="text-center">Keterangan</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Gina</td>
-                        <td>20 mei 2024</td>
-                        <td>SAKIT</td>
-                    </tr>
+                    <tr v-for="(visitor,i) in students" :key="i">
+                            <td>{{ i+1 }}.</td>
+                            <td>{{ visitor?.id_siswa.nama }}</td>
+                            <td>{{ visitor.tgl }}</td>
+                            <td>{{ visitor.keterangan }}</td>
+                        </tr>
                 </thead>
             </table>
             <div class="col-1 ms-auto mb-3">
@@ -32,9 +36,23 @@
     </div>
 
 </template>
-<script setup>
 
-definePageMeta({
-  middleware: 'auth',
+<script setup>
+const supabase = useSupabaseClient()
+const date = ref('')
+const students = ref([])
+
+const getSchedule = async (event) => {
+    date.value = event.target.value
+    const { data, error } = await supabase
+    .from('daftar_kehadiran')
+    .select(`*, id_siswa(nama)`);
+    //.eq('tgl', date.value)
+    if(data) students.value = data
+//     if (error) throw error
+//     visitor.value = data
+}
+onMounted (() => {
+    getSchedule();
 })
 </script>

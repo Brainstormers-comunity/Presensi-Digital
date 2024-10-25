@@ -15,7 +15,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-11">
-            {{ siswaMarked }}
+            <!-- {{ siswaMarked }} -->
             <div class="my-3 h3">Jumlah Siswa: {{ siswaMarked.length }}</div>
             <table class="table table-striped table-bordered">
                 <thead>
@@ -42,14 +42,22 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="position-relative my-5">
+                <NuxtLink to="/">
+                    <button class="btn position-absolute bottom-0 start-0 " style="background-color: #D9D9D9">kembali</button>
+                </NuxtLink>
+                     <button @click="kirimPresensi" class="btn position-absolute bottom-0 end-0" style="background-color: #D9D9D9">Kirim</button>
+            </div>
+            <div class="row">
+                <NuxtLink to="/logout">
+                    Logout
+                </NuxtLink>
+            </div>
         </div>
-        <div class="col-2 ms-auto mb-3">
-            <button @click="kirimPresensi" class="btn" style="background-color: #D9D9D9">Kirim</button>
-        </div>       
     </div>
 </template> 
 
-
+ 
 <script setup>
 definePageMeta({
   middleware: 'auth',
@@ -88,31 +96,15 @@ async function getSiswa(event) {
 }
 
 async function kirimPresensi() {
-    console.log(siswaMarked.value)
+    // console.log(siswaMarked.value)
     const { data, error } = await client
         .from('daftar_kehadiran')
         .insert(siswaMarked.value)
         .select()
     if(data) {
-        console.log('sukses!')
+        navigateTo('/presensi/riwayat')
     }
-    // const dataToInsert = siswa.value.map((siswaItem, index) => ({
-    //     tgl: new Date().toISOString().split('T')[0], // Tanggal hari ini
-    //     id_siswa: siswaItem.id, // Ambil ID siswa
-    //     keterangan: keterangan.value[index] // Ambil ID keterangan dari dropdown
-    // }));
 
-    // const { data, error } = await client
-    //     .from('daftar_kehadiran') // Nama tabel
-    //     .insert(dataToInsert);
-
-    // if (error) {
-    //     console.error('Error saat memasukkan data:', error.message);
-    // } else {
-    //     console.log('Data berhasil dimasukkan:', data);
-    //     siswa.value = [];
-    //     keterangan.value = [];
-    // }
 }
 
 

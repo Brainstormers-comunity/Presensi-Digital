@@ -1,21 +1,20 @@
 <template>
     <div class="row">
         <div class="col">
-            <h1 class="text-center my-3"> LAPORAN RIWAYAT KEHADIRAN </h1> 
+            <h1 class="text-center my-3 judul"> LAPORAN RIWAYAT KEHADIRAN </h1> 
         </div>
      </div>
-     <div class="row justify-content-center">
-        <div class="col-11"> 
-            <input type="text"class="form-control form-control-lg form-select mb-3"  placeholder="filter" style="width: 110rem;height:3rem;background-color: #D9D9D9; ">
-        </div>
-     </div>  
+     <div class="row  justify-content-center">
+        <input type="date" @change="getSchedule" style="width: 110rem; height:3rem;background-color: #D9D9D9;" class="rounded-3 my-3" >
+        {{ schedule }}
+    </div>
      <div class="row justify-content-center">
             <div class="col-11">
              <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th class="text-center" rowspan ="2">Tanggal</th>
-                        <th class="text-center" rowspan="2">Kelas</th>
+                        <th class="text-center" rowspan="2">Tingkat</th>
                         <th class="text-center" rowspan="2">Jumlah Siswa</th>
                         <th class="text-center" colspan="5">KETERANGAN</th>
                     </tr>
@@ -29,13 +28,35 @@
 
                     <tr>
                         <td>25 SEPTEMBER 2024</td>
-                        <td>XI TOI</td>
+                        <td>X TOI</td>
                         <td>34</td>
                         <td>30</td>
                         <td>1</td>
                         <td>1</td>
                         <td>1</td>
-                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>25 SEPTEMBER 2024</td>
+                        <td>XI TOI</td>
+                        <td>32</td>
+                        <td>30</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>3</td>
+                    </tr>
+
+                    <tr>
+                        <td>25 SEPTEMBER 2024</td>
+                        <td>XII TOI</td>
+                        <td>32</td>
+                        <td>30</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>3</td>
                     </tr>
                 </thead>
              </table>
@@ -47,3 +68,23 @@
          </div>
          </div>
 </template>
+
+<script setup>
+const supabase = useSupabaseClient()
+const date = ref('')
+const students = ref([])
+
+const getSchedule = async (event) => {
+    date.value = event.target.value
+    const { data, error } = await supabase
+    .from('daftar_kehadiran')
+    .select(`*, id_siswa(nama)`);
+    //.eq('tgl', date.value)
+    if(data) students.value = data
+//     if (error) throw error
+//     visitor.value = data
+}
+onMounted (() => {
+    getSchedule();
+})
+</script>
