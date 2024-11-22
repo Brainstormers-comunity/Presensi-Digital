@@ -1,6 +1,6 @@
 <template>
     <div>
-      tunggu sebentar...
+    TUNGGU SEBENTAR!!...
     </div>
   </template>
   

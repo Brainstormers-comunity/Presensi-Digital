@@ -16,7 +16,7 @@
     <div class="row justify-content-center">
         <div class="col-11">
             <!-- {{ siswaMarked }} -->
-            <div class="my-3 h3">Jumlah Siswa: {{ siswaMarked.length }}</div>
+            <!-- <div class="my-3 h3">Jumlah Siswa: {{ siswaMarked.length }}</div> -->
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
