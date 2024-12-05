@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-11">
             <select @change="getSiswa" class="form-control form-control-lg form-select mb-3" style="background-color: #D9D9D9;">
-                <option value="" disabled>Pilih Tingkat</option>
+                <option value=""  disabled>Pilih Tingkat</option>
                 <option v-for="k in kelas" :key="k.id" :value="k.id">{{ k.kelas }}</option>
             </select>
 

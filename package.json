@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap": "5.2",
     "nuxt": "^3.13.0",
+    "nuxt.js": "^0.0.1",
     "vue": "latest"
   },
   "devDependencies": {
